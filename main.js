@@ -177,14 +177,14 @@ function advanceFrameAndRoll() {
         return;
     }
     //non-spare but first roll was strike
-    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && isStrike(previousFrame)) {
+    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && isStrike(currentFrame)) {
         currentFrame.type = "spare";
         game.roll++;
         updateDisplayForFrame();
         return;
     }
     //non-spare or strike on first roll
-    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && !isStrike(previousFrame)) {
+    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && !isStrike(currentFrame)) {
         gameOver();
         return;
     }
