@@ -1,4 +1,3 @@
-"use strict";
 //Classes
 var Frame = /** @class */ (function () {
     function Frame(roll1, roll2, roll3, type, score) {
@@ -122,7 +121,6 @@ function calculateScore() {
 }
 function advanceFrameAndRoll() {
     var currentFrame = theFrames[game.frame];
-    var previousFrame = theFrames[game.frame - 1];
     //FRAMES 1-9 Scenarios
     //strike
     if (!isTenthFrame() && isFirstRoll() && isStrike(currentFrame)) {
@@ -168,6 +166,14 @@ function advanceFrameAndRoll() {
         updateDisplayForFrame();
         return;
     }
+    //double-strike
+    if (isTenthFrame() && isSecondRoll() && isDoubleStrike(currentFrame)) {
+        currentFrame.type = "strike";
+        resetPins();
+        game.roll++;
+        updateDisplayForFrame();
+        return;
+    }
     //spare
     if (isTenthFrame() && isSecondRoll() && isSpare(currentFrame)) {
         currentFrame.type = "spare";
@@ -176,8 +182,8 @@ function advanceFrameAndRoll() {
         updateDisplayForFrame();
         return;
     }
-    //non-spare but first roll was strike
-    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && isStrike(currentFrame)) {
+    //non-spare or double-strike but first roll was strike
+    if (isTenthFrame() && isSecondRoll() && !isSpare(currentFrame) && isStrike(currentFrame) && !isDoubleStrike(currentFrame)) {
         currentFrame.type = "spare";
         game.roll++;
         updateDisplayForFrame();
@@ -215,6 +221,9 @@ function isSpare(frame) {
 }
 function isStrike(frame) {
     return (frame.roll1 > 9);
+}
+function isDoubleStrike(frame) {
+    return (frame.roll1 > 9 && frame.roll2 > 9);
 }
 function getNextRoll(index) {
     return theFrames[index + 1].roll1;
