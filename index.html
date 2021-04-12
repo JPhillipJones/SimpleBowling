@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<style>
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 220px 220px;
+}
+
+
+</style>
+<html>    
+    <body>
+        <div style="width:100%">
+            <div style="margin-left:auto; margin-right:auto;width:206px"> 
+               <h2>-Simple Bowling-</h2>
+               <h3><span id="Display">Click to Start!</span></h3>
+               <div class="wrapper">
+               <div style="border:solid;border-width:medium;width:205px">
+                   <canvas id="theCanvas"  width="200" height="500" style="border:2px; border-color:black"></canvas>
+                   <br />
+               </div>
+               <div style="width:450px" >
+                <div id="scoresContainer">
+               </div>
+               </div>
+
+            </div>
+            <div class="wrapper">
+                <div>
+                    <span id="Instrucitons"></span>
+                    <h3><span id="ScoreHeader">Score: </span><span id="Score" >0</span></h3> 
+                </div>
+                <div>
+
+                </div>
+            </div>
+            </div>
+      
+        <script src="main.js"> </script>
+    </body>
+</html>
