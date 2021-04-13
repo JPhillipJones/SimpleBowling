@@ -1,3 +1,4 @@
+"use strict";
 //Classes
 var Frame = /** @class */ (function () {
     function Frame(roll1, roll2, roll3, type, score) {
@@ -480,5 +481,55 @@ function runTestData() {
     theFrames[10].roll2 = 1;
     theFrames[10].roll3 = 7;
     calculateScore();
+    console.log("Test: Score Calculation 1");
     console.log(game.score);
+    //
+    game.frame = 10;
+    theFrames[1].roll1 = 10;
+    theFrames[1].roll2 = 0;
+    theFrames[2].roll1 = 10;
+    theFrames[2].roll2 = 0;
+    theFrames[3].roll1 = 10;
+    theFrames[3].roll2 = 0;
+    theFrames[4].roll1 = 10;
+    theFrames[4].roll2 = 0;
+    theFrames[5].roll1 = 10;
+    theFrames[5].roll2 = 0;
+    theFrames[6].roll1 = 10;
+    theFrames[6].roll2 = 0;
+    theFrames[7].roll1 = 10;
+    theFrames[7].roll2 = 0;
+    theFrames[8].roll1 = 10;
+    theFrames[8].roll2 = 0;
+    theFrames[9].roll1 = 10;
+    theFrames[9].roll2 = 0;
+    theFrames[10].roll1 = 10;
+    theFrames[10].roll2 = 10;
+    theFrames[10].roll3 = 10;
+    calculateScore();
+    console.log("Test: Score Perfect Game");
+    console.log(game.score);
+    //    
+    theFrames[10].roll1 = 10;
+    theFrames[10].roll2 = 10;
+    thePins.forEach(function (p) {
+        p.upRight = false;
+    });
+    game.frame = 10;
+    game.roll = 2;
+    advanceFrameAndRoll();
+    console.log("Test: Frame 10 - Just rolled double strike");
+    console.log("Passed? " + (game.frame === 10 && game.roll === 3 && thePins[0].upRight));
+    //    
+    theFrames[10].roll1 = 10;
+    theFrames[10].roll2 = 9;
+    thePins.forEach(function (p) {
+        p.upRight = false;
+    });
+    thePins[0].upRight = true;
+    game.frame = 10;
+    game.roll = 2;
+    advanceFrameAndRoll();
+    console.log("Test: Frame 10 - Just rolled strike then nine");
+    console.log("Passed? " + (game.frame === 10 && game.roll === 3 && thePins[0].upRight && !thePins[1].upRight));
 }
